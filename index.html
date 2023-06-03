@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>My Match</title>
+		<style>
+			article, header, footer {text-align: center;}
+			div {margin-bottom: 10px}
+			header, footer {font-size: 5px}
+			.footer {display: none}
+		</style>
+	</head>
+	<body>
+		<header>
+			<p id="date"></p>
+		</header>
+
+		<nav>
+		</nav>
+
+		<article id="match">
+			<div id="team1">
+				<input type="text" id="team1_name" value="Team 1"/>
+				<br/>
+				<input type="button" value="5" id="team1_try" onclick="
+					add_score(this.id,this.value);
+					add_event(this.id,'events');
+				"/>
+			</div>
+			<div id="score">
+				<p id="team1_score">0</p> : <p id="team2_score">0</p>
+			</div>
+			<div id="team2">
+				<input type="text" id="team2_name" value="Team 2"/>
+				<br/>
+				<input type="button" value="5" id="team2_try" onclick="
+					add_score(this.id,this.value);
+					add_event(this.id,'events');
+				"/>
+			</div>
+		</article>
+
+		<article  class="text_area" id="events">
+		</article>
+
+		<footer>
+			<div>
+				<a onclick="display_switch('fr_footer')">FR</a>
+				<a onclick="display_switch('en_footer')">EN</a>
+			</div>
+			<div class="footer" id="fr_footer">
+				Construit et Mit en page par Digitale Entreprise<br/>
+				Cette page n'utilise pas de cookies et d'options analitiques<br/>
+				<a href="mailto:bertin322@gmail.com">Contactez-nous par mail</a>
+			</div>
+			<div  class="footer" id="en_footer">
+				Created and designed by Digitale Entreprise<br/>
+				This page doesn't use cookies or analytics options<br/>
+				<a href="mailto:bertin322@gmail.com">Contact us by mail</a>
+			</div>
+		</footer>
+
+		<script>
+			document.getElementById('date').innerHTML = Date();
+			function display_switch(id_display){
+				const x = document.getElementById(id_display);
+				if (x.style.display == 'none'){
+					x.style.display = 'block';
+				}else{
+					x.style.display = 'none';
+				}
+			}
+			function add_score(id_btn,value_btn){
+				document.getElementById(id_btn.split('_')[0]+'_score').innerHTML = (parseInt(document.getElementById(id_btn.split('_')[0]+'_score').innerHTML, 10) + parseInt(value_btn, 10));
+			}
+			function add_event(id_btn,id_out){
+				const node = document.createElement("p");
+				const textnode = document.createTextNode(Date() + ' : Essai ' + document.getElementById(id_btn.split('_')[0] + '_name').value + ' -> ' + document.getElementById('team1_score').innerHTML + ':' + document.getElementById('team2_score').innerHTML);
+				node.appendChild(textnode);
+				document.getElementById(id_out).appendChild(node);
+			}
+		</script>
+
+	</body>
+</html>
