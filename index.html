@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>My Match</title>
+		<title>Rugby Match Explorer</title>
 		<style>
 			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
 			div {margin-bottom: 10px;}
@@ -12,35 +12,24 @@
 	</head>
 	<body>
 		<header>
-			<p id="date"></p>
+			<p>Rugby Match Explorer</p>
 		</header>
-
 		<nav>
+			<div>Go Match</div>
+			<div>About Rules</div>
 		</nav>
 
-		<article id="match">
-			<div id="team1">
-				<input type="text" id="team1_name" value="Team 1"/>
-				<br/>
-				<input type="button" value="5" id="team1_try" onclick="
-					add_score(this.id,this.value);
-					add_event(this.id,'events');
-				"/>
-			</div>
-			<div id="score">
-				<a id="team1_score">0</a> : <a id="team2_score">0</a>
-			</div>
-			<div id="team2">
-				<input type="text" id="team2_name" value="Team 2"/>
-				<br/>
-				<input type="button" value="5" id="team2_try" onclick="
-					add_score(this.id,this.value);
-					add_event(this.id,'events');
-				"/>
-			</div>
-		</article>
-
-		<article  class="text_area" id="events">
+		<article id="go_match">
+			<form>
+				<select name="select" id="form"/>
+					<option value="5">Touch<option/>
+					<option value="7">7<option/>
+					<option value="15">XV<option/>
+				<select/>
+				<input type="text" id="team1_name" value="" placeholder="Team1 name" required />
+				<input type="text" id="team2_name" value="" placeholder="Team1 name" required />
+				<input type="submit" value="GO!" >
+			</form>
 		</article>
 
 		<footer>
