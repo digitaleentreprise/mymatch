@@ -6,17 +6,18 @@
 			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
 			div {margin-bottom: 10px;}
 			header, footer {font-size: 5px}
+			nav {display: block;}
 			.footer {display: none}
 			.text_area {font-size: 10px;}
 		</style>
 	</head>
 	<body>
 		<header>
-			<p>Rugby Match Explorer</p>
+			Rugby Match Explorer
 		</header>
 		<nav>
-			<div>Go Match</div>
-			<div>About Rules</div>
+			<a>Go Match</a>
+			<a>About Rules</a>
 		</nav>
 
 		<article id="go_match">
@@ -27,7 +28,7 @@
 					<option value="15">XV<option/>
 				<select/>
 				<input type="text" id="team1_name" value="" placeholder="Team1 name" required />
-				<input type="text" id="team2_name" value="" placeholder="Team1 name" required />
+				<input type="text" id="team2_name" value="" placeholder="Team2 name" required />
 				<input type="submit" value="GO!" >
 			</form>
 		</article>
