@@ -7,8 +7,10 @@
 			div {margin-bottom: 10px;}
 			header, footer {font-size: 5px}
 			nav {display: block;}
-			.footer {display: none}
+			.unview {display: none}
 			.text_area {font-size: 10px;}
+			.blink {animation: blinker 1s linear infinite;}
+			@keyframes blinker {50% {opacity: 0;}}
 		</style>
 	</head>
 	<body>
@@ -16,30 +18,30 @@
 			Rugby Match Explorer
 		</header>
 		<nav>
-			<a href="match.html">Go Match</a>
+			<a class="blink" onclick="display_switch('go_match')">Go Match</a>
 			<a href="rules.html">About Rules</a>
 		</nav>
 		<article id="welcome">
 			Welcome on RUGBY MATCH EXPLORER<br>
 			This web-site helps you to record evenements during a Rugby match<br>
 			<ol>
-				<li>Go on "Go Match"</li>
-				<li>Select Rugby sort practice</li>>
+				<li>Go on <a onclick="display_switch('go_match')">Go Match</a></li>
+				<li>Select Rugby sort practice</li>
 				<li>Record Teams name</li>
 				<li>Play it!</li>
 			</ol>
 		</article>
 
 
-		<article id="go_match">
-			<form>
-				<select name="select" id="form"/>
+		<article id="go_match" class="unview">
+			<form action="match.html" method="get">
+				<select name="practice" id="form"/>
 					<option value="5">Touch<option/>
 					<option value="7">7<option/>
 					<option value="15">XV<option/>
 				<select/>
-				<input type="text" id="team1_name" value="" placeholder="Team1 name" required />
-				<input type="text" id="team2_name" value="" placeholder="Team2 name" required />
+				<input type="text" name="team1" value="" placeholder="Team1 name" required />
+				<input type="text" name="team2" value="" placeholder="Team2 name" required />
 				<input type="submit" value="GO!" >
 			</form>
 		</article>
@@ -49,12 +51,12 @@
 				<a onclick="display_switch('fr_footer')">FR</a>
 				<a onclick="display_switch('en_footer')">EN</a>
 			</div>
-			<div class="footer" id="fr_footer">
+			<div class="unview" id="fr_footer">
 				Construit et Mit en page par Digitale Entreprise<br/>
 				Cette page n'utilise pas de cookies et d'options analitiques<br/>
 				<a href="mailto:bertin322@gmail.com">Contactez-nous par mail</a>
 			</div>
-			<div  class="footer" id="en_footer">
+			<div  class="unview" id="en_footer">
 				Created and designed by Digitale Entreprise<br/>
 				This page doesn't use cookies or analytics options<br/>
 				<a href="mailto:bertin322@gmail.com">Contact us by mail</a>
@@ -70,15 +72,6 @@
 				}else{
 					x.style.display = 'none';
 				}
-			}
-			function add_score(id_btn,value_btn){
-				document.getElementById(id_btn.split('_')[0]+'_score').innerHTML = (parseInt(document.getElementById(id_btn.split('_')[0]+'_score').innerHTML, 10) + parseInt(value_btn, 10));
-			}
-			function add_event(id_btn,id_out){
-				const node = document.createElement("p");
-				const textnode = document.createTextNode(Date() + ' : Essai ' + document.getElementById(id_btn.split('_')[0] + '_name').value + ' -> ' + document.getElementById('team1_score').innerHTML + ':' + document.getElementById('team2_score').innerHTML);
-				node.appendChild(textnode);
-				document.getElementById(id_out).appendChild(node);
 			}
 		</script>
 

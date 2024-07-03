@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>My Match</title>
+		<style>
+			article, header, footer, input, div {text-align: center;width: 100%;font-size: 3ex;}
+			div1 {margin-bottom: 10px;}
+			header, footer {font-size: 5px}
+			.footer {display: none}
+			.text_area {font-size: 10px;}
+		</style>
+	</head>
+	<body>
+		<header>
+			<p id="date"></p>
+		</header>
+
+		<nav>
+		</nav>
+
+		<article id="team1">
+			<input type="text" id="team1_name" value="Team 1"/>
+			<div id="team1_actions" style="display: flex;">
+				<input type="button" value="Score" id="team1_scoring-team1_other" onclick="display_switch(this.id.split('-')[0]);
+					display_off(this.id.split('-')[1]);
+				"/>
+				<input type="button" value="Autre" id="team1_other-team1_scoring" onclick="
+					display_switch(this.id.split('-')[0]);
+					display_off(this.id.split('-')[1]);
+				"/>
+			</div>
+			<div id="team1_scoring" style="display: none;">
+				<input type="button" value="Essai" name="5" id="team1_try" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+				<input type="button" value="P&eacute;nalit&eacute;" name="3" id="team1_penalty" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+				<input type="button" value="Drop" name="3" id="team1_drop" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+			</div>
+			<div id="team1_other" style="display: none;">
+				<input type="button" value="Carton Blanc" name="0" id="team1_white-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Jaune" name="0" id="team1_yellow-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Rouge" name="0" id="team1_red-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Bleu" name="0" id="team1_blue-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+			</div>
+		</article>
+
+		<article id="score">
+			<a id="team1_score">0</a> : <a id="team2_score">0</a>
+		</article>
+
+		<article id="team2">
+			<input type="text" id="team2_name" value="Team 2"/>
+			<div id="team2_actions" style="display: flex;">
+				<input type="button" value="Score" id="team2_scoring-team2_other" onclick="display_switch(this.id.split('-')[0]);
+					display_off(this.id.split('-')[1]);
+				"/>
+				<input type="button" value="Autre" id="team2_other-team2_scoring" onclick="
+					display_switch(this.id.split('-')[0]);
+					display_off(this.id.split('-')[1]);
+				"/>
+			</div>
+			<div id="team2_scoring" style="display: none;">
+				<input type="button" value="Essai" name="5" id="team2_try" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+				<input type="button" value="P&eacute;nalit&eacute;" name="3" id="team2_penalty" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+				<input type="button" value="Drop" name="3" id="team2_drop" onclick="
+					add_score(this.id,this.name);
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_scoring');
+				"/>
+			</div>
+			<div id="team2_other" style="display: none;">
+				<input type="button" value="Carton Blanc" name="0" id="team2_white-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Jaune" name="0" id="team2_yellow-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Rouge" name="0" id="team2_red-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+				<input type="button" value="Carton Bleu" name="0" id="team2_blue-card" onclick="
+					add_event(this.id,'events');
+					display_switch(this.id.split('_')[0]+'_other');
+				"/>
+			</div>
+		</article>
+
+		<article class="text_area" id="events">
+		</article>
+
+		<footer>
+			<div>
+				<a onclick="display_switch('fr_footer')">FR</a>
+				<a onclick="display_switch('en_footer')">EN</a>
+			</div>
+			<div class="footer" id="fr_footer">
+				Construit et Mit en page par Digitale Entreprise<br/>
+				Cette page n'utilise pas de cookies et d'options analitiques<br/>
+				<a href="mailto:bertin322@gmail.com">Contactez-nous par mail</a>
+			</div>
+			<div  class="footer" id="en_footer">
+				Created and designed by Digitale Entreprise<br/>
+				This page doesn't use cookies or analytics options<br/>
+				<a href="mailto:bertin322@gmail.com">Contact us by mail</a>
+			</div>
+		</footer>
+
+		<script>
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			document.getElementById('team1_name').value = urlParams.get('team1')
+			document.getElementById('team2_name').value = urlParams.get('team2')
+
+			document.getElementById('date').innerHTML = Date();
+			function display_switch(id_display){
+				const x = document.getElementById(id_display);
+				if (x.style.display == 'none'){
+					x.style.display = 'flex';
+				}else{
+					x.style.display = 'none';
+				}
+			}
+			function display_off(id_display){
+				const x = document.getElementById(id_display);
+				x.style.display = 'none';
+			}
+			function add_score(id_btn,value_btn){
+				document.getElementById(id_btn.split('_')[0]+'_score').innerHTML = (parseInt(document.getElementById(id_btn.split('_')[0]+'_score').innerHTML, 10) + parseInt(value_btn, 10));
+			}
+			function add_event(id_btn,id_out){
+				const node = document.createElement("p");
+				const textnode = document.createTextNode(Date() + ' : ' + document.getElementById(id_btn).value + ' ' + document.getElementById(id_btn.split('_')[0] + '_name').value + ' -> ' + document.getElementById('team1_score').innerHTML + ':' + document.getElementById('team2_score').innerHTML);
+				node.appendChild(textnode);
+				document.getElementById(id_out).appendChild(node);
+			}
+		</script>
+
+	</body>
+</html>
