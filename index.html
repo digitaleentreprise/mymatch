@@ -6,8 +6,13 @@
 			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
 			div {margin-bottom: 10px;}
 			header, footer {font-size: 5px}
-			nav {display: block;}
-			.unview {display: none}
+
+			nav ul {list-style-type: none;margin: 0;padding: 0;overflow: hidden;}
+			nav ul li {float: left;}
+			.NAVRIGHT {float: right;}
+			nav ul li a {display: block;padding: 8px}
+			nav ul li a,.nav {background-color: DodgerBlue;color: White;}
+			.unview,.hidden {display: none}
 			.text_area {font-size: 10px;}
 			.blink {animation: blinker 1s linear infinite;}
 			body {
@@ -25,14 +30,37 @@
 			Rugby Match Explorer
 		</header>
 		<nav>
-			<a class="blink" onclick="display_switch('go_match')">Go Match</a>
-			<a href="rules.html">About Rules</a>
+			<ul>
+				<li><a class="blink" onclick="display_switch('go_match')">Go Match</a></li>
+				<li class="FR"><a href="rules.html">Les R&egrave;gles</a></li>
+				<li class="EN hidden"><a href="rules.html">About Rules</a></li>
+				<li class="FR"><a onclick="display_switch('help')">Aide</a></li>
+				<li class="EN hidden"><a onclick="display_switch('help')">Help</a></li>
+				<li class="FR"><a onclick="display_switch('footer')">&Agrave; propos du site</a></li>
+				<li class="EN hidden"><a onclick="display_switch('footer')">About web-wite</a></li>
+				<li class="NAVRIGHT"><a onclick="HideClassType('EN');UnHideClassType('FR')">FR</a></li>
+				<li class="NAVRIGHT"><a onclick="HideClassType('FR');UnHideClassType('EN');">EN</a></li>
+			</ul>
 		</nav>
 		<article id="welcome">
-			Welcome on RUGBY MATCH EXPLORER<br>
-			This web-site helps you to record evenements during a Rugby match<br>
-			<ol>
-				<li>Go on <a onclick="display_switch('go_match')">Go Match</a></li>
+			<p class="FR">
+				Bienvenue sur RUGBY MATCH EXPLORER<br>
+				Ce site-web va vous aider &agrave; suivre vos &eacute;v&egrave;nements durant un match de Rugby
+			</p>
+			<p class="EN hidden">
+				Welcome on RUGBY MATCH EXPLORER<br>
+				This web-site helps you to record evenements during a Rugby match
+			</p>
+		</article>
+		<article class="unview" id="help">
+			<ol class="FR">
+				<li>Clique sur <a class="blink nav" onclick="display_switch('go_match')">Go Match</a></li>
+				<li>Choisi la forme de rubgy pratiqu&eacute; dans la liste d&eacute;roulante</li>
+				<li>Inscrit le nom des &eacute;quipes qui vont s&prime;affronter</li>
+				<li>Valide et c&prime;est Parti!</li>
+			</ol>
+			<ol class="EN hidden">
+				<li>Go on <a class="blink nav" onclick="display_switch('go_match')">Go Match</a></li>
 				<li>Select Rugby sort practice</li>
 				<li>Record Teams name</li>
 				<li>Play it!</li>
@@ -53,17 +81,13 @@
 			</form>
 		</article>
 
-		<footer>
-			<div>
-				<a onclick="display_switch('fr_footer')">FR</a>
-				<a onclick="display_switch('en_footer')">EN</a>
-			</div>
-			<div class="unview" id="fr_footer">
+		<footer id="footer" class="unview">
+			<div class="FR">
 				Construit et Mit en page par Digitale Entreprise<br/>
 				Cette page n'utilise pas de cookies et d'options analitiques<br/>
 				<a href="mailto:bertin322@gmail.com">Contactez-nous par mail</a>
 			</div>
-			<div  class="unview" id="en_footer">
+			<div  class="EN hidden">
 				Created and designed by Digitale Entreprise<br/>
 				This page doesn't use cookies or analytics options<br/>
 				<a href="mailto:bertin322@gmail.com">Contact us by mail</a>
@@ -73,11 +97,33 @@
 		<script>
 			document.getElementById('date').innerHTML = Date();
 			function display_switch(id_display){
+				const ClassFixe = "unview";
 				const x = document.getElementById(id_display);
-				if (x.style.display == 'none'){
-					x.style.display = 'block';
-				}else{
-					x.style.display = 'none';
+					if (x.classList.contains(ClassFixe)){
+						x.classList.remove(ClassFixe);
+					}
+					else {
+						x.classList.add(ClassFixe);
+					}
+			}
+
+			function HideClassType(ClassType){
+				const ClassFixe = "hidden";
+				const x = document.getElementsByClassName(ClassType);
+				for (var i =  0; i < x.length; i++) {
+					if (!x[i].classList.contains(ClassFixe)){
+						x[i].classList.add(ClassFixe);
+					}
+				}
+			}
+
+			function UnHideClassType(ClassType){
+				const ClassFixe = "hidden";
+				const x = document.getElementsByClassName(ClassType);
+				for (var i =  0; i < x.length; i++) {
+					if (x[i].classList.contains(ClassFixe)){
+						x[i].classList.remove(ClassFixe);
+					}
 				}
 			}
 		</script>
