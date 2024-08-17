@@ -23,11 +23,13 @@
   				background-position: center;
   			}
 			@keyframes blinker {50% {opacity: 0;}}
+			select, input {font-size: 80%;float: center;width: 50%; height: 50px;line-height:50px;background:White;}
+			select {-webkit-appearance: menulist-button;-moz-appearance:none;}
 		</style>
 	</head>
 	<body>
 		<header>
-			Rugby Match Explorer
+			<a>Rugby Match Explorer</a>
 		</header>
 		<nav>
 			<ul>
@@ -70,14 +72,15 @@
 
 		<article id="go_match" class="unview">
 			<form action="match.html" method="get">
-				<select name="practice" id="form"/>
-					<option value="5">Touch<option/>
-					<option value="7">7<option/>
-					<option value="15">XV<option/>
-				<select/>
-				<input type="text" name="team1" value="" placeholder="Team1 name" required />
-				<input type="text" name="team2" value="" placeholder="Team2 name" required />
-				<input type="submit" value="GO!" >
+				<select class="full" name="practice" id="form">
+					<option value="0">EdR</option>
+					<option value="5">Touch</option>
+					<option value="7">7</option>
+					<option value="15" selected>XV</option>
+				</select>
+				<input class="full" type="text" name="team1" value="" placeholder="Team1 name" required />
+				<input class="full" type="text" name="team2" value="" placeholder="Team2 name" required />
+				<input class="full" type="submit" value="GO!" >
 			</form>
 		</article>
 
