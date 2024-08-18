@@ -2,19 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Rugby Match Explorer</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
 		<style>
-			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
-			div {margin-bottom: 10px;}
-			header, footer {font-size: 5px}
-
-			nav ul {list-style-type: none;margin: 0;padding: 0;overflow: hidden;}
-			nav ul li {float: left;}
-			.NAVRIGHT {float: right;}
-			nav ul li a {display: block;padding: 8px}
-			nav ul li a,.nav {background-color: DodgerBlue;color: White;}
-			.unview,.hidden {display: none}
-			.text_area {font-size: 10px;}
-			.blink {animation: blinker 1s linear infinite;}
 			body {
 				background-image: url("bgi.png");
   				background-repeat: no-repeat;
@@ -22,11 +11,30 @@
   				background-attachment: fixed;
   				background-position: center;
   			}
+			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
+			div {margin-bottom: 10px;}
+			header, footer {font-size: 5px}
+			.unview,.hidden {display: none;}
+			.text_area {font-size: 10px;}
+			.blink {animation: blinker 1s linear infinite;}
 			@keyframes blinker {50% {opacity: 0;}}
 			select, input {font-size: 80%;float: center;width: 50%; height: 50px;line-height:50px;background:White;}
 			select {-webkit-appearance: menulist-button;-moz-appearance:none;}
 			@media only screen and (max-width: 600px) {
 			select, input {font-size: 80%;float: center;width: 100%; height: 100px;line-height:1000px;background:White;}
+			}
+			nav {overflow: hidden;background-color: #888;}
+			nav a {float: left;display: block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;font-size: 17px;}
+			nav a:hover {background-color: #ddd;color: black;}
+			nav a.active {background-color: DodgerBlue;color: White;}
+			nav a.icon {display: none;}
+			@media screen and (max-width: 600px) {
+			  nav a:not(:first-child) {display: none;}
+			  nav a.icon {float: right;display: block;}
+			  nav.responsive {position: relative;}
+			  nav.responsive .icon {position: absolute;right: 0;top: 0;}
+			  nav.responsive a.hidden {display: none;}
+			  nav.responsive a {float: none;display: block;text-align: left;}
 			}
 		</style>
 	</head>
@@ -34,18 +42,17 @@
 		<header>
 			<a>Rugby Match Explorer</a>
 		</header>
-		<nav>
-			<ul>
-				<li><a class="blink" onclick="display_switch('go_match')">Go Match</a></li>
-				<li class="FR"><a href="rules.html">Les R&egrave;gles</a></li>
-				<li class="EN hidden"><a href="rules.html">About Rules</a></li>
-				<li class="FR"><a onclick="display_switch('help')">Aide</a></li>
-				<li class="EN hidden"><a onclick="display_switch('help')">Help</a></li>
-				<li class="FR"><a onclick="display_switch('footer')">&Agrave; propos du site</a></li>
-				<li class="EN hidden"><a onclick="display_switch('footer')">About web-wite</a></li>
-				<li class="NAVRIGHT"><a onclick="HideClassType('EN');UnHideClassType('FR')">FR</a></li>
-				<li class="NAVRIGHT"><a onclick="HideClassType('FR');UnHideClassType('EN');">EN</a></li>
-			</ul>
+		<nav id="navbar">
+			<a class="active blink" onclick="display_switch('go_match')">Go Match</a>
+			<a class="FR" href="rules.html">Les R&egrave;gles</a>
+			<a class="EN hidden" href="rules.html">About Rules</a>
+			<a class="FR" href="javascript:void(0);" onclick="display_switch('help')">Aide</a>
+			<a class="EN hidden" href="javascript:void(0);" onclick="display_switch('help')">Help</a>
+			<a class="FR" href="javascript:void(0);" onclick="display_switch('footer')">&Agrave; propos du site</a>
+			<a class="EN hidden" href="javascript:void(0);" onclick="display_switch('footer')">About web-wite</a>
+			<a href="javascript:void(0);" onclick="HideClassType('EN');UnHideClassType('FR')">FR</a>
+			<a href="javascript:void(0);" onclick="HideClassType('FR');UnHideClassType('EN');">EN</a>
+			<a href="javascript:void(0);" class="icon" onclick="SwitchClassbyId('responsive','navbar')">+</a>
 		</nav>
 		<article id="welcome">
 			<p class="FR">
@@ -101,10 +108,18 @@
 		</footer>
 
 		<script>
-			document.getElementById('date').innerHTML = Date();
 			function display_switch(id_display){
 				const ClassFixe = "unview";
 				const x = document.getElementById(id_display);
+					if (x.classList.contains(ClassFixe)){
+						x.classList.remove(ClassFixe);
+					}
+					else {
+						x.classList.add(ClassFixe);
+					}
+			}
+			function SwitchClassbyId(ClassFixe,Id){
+				const x = document.getElementById(Id);
 					if (x.classList.contains(ClassFixe)){
 						x.classList.remove(ClassFixe);
 					}
