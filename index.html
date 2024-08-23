@@ -11,24 +11,22 @@
   				background-attachment: fixed;
   				background-position: center;
   			}
-			article, header, footer, input, div {text-align: center;width: 100%;font-size: 4ex;}
-			div {margin-bottom: 10px;}
+			article, header, footer, select, input, div {text-align: center;width: 100%;font-size: 4ex;}
 			header, footer {font-size: 5px}
+			div {margin-bottom: 10px;}
+			select, input {font-size: 80%;float: center;background:White; color: black;width: 50%; height: 50px;line-height:50px;border-radius: 10px}
+			select {-webkit-appearance: menulist-button;-moz-appearance:none;text-align-last: center;}
 			.unview,.hidden {display: none;}
 			.text_area {font-size: 10px;}
 			.blink {animation: blinker 1s linear infinite;}
 			@keyframes blinker {50% {opacity: 0;}}
-			select, input {font-size: 80%;float: center;width: 50%; height: 50px;line-height:50px;background:White;}
-			select {-webkit-appearance: menulist-button;-moz-appearance:none;}
-			@media only screen and (max-width: 600px) {
-			select, input {font-size: 80%;float: center;width: 100%; height: 100px;line-height:1000px;background:White;}
-			}
 			nav {overflow: hidden;background-color: #888;}
 			nav a {float: left;display: block;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;font-size: 17px;}
 			nav a:hover {background-color: #ddd;color: black;}
 			nav a.active {background-color: DodgerBlue;color: White;}
 			nav a.icon {display: none;}
-			@media screen and (max-width: 600px) {
+			@media only screen and (max-width: 600px) {
+				select, input {width: 100%; height: 100px;font-size: 150%;}
 			  nav a:not(:first-child) {display: none;}
 			  nav a.icon {float: right;display: block;}
 			  nav.responsive {position: relative;}
@@ -52,7 +50,7 @@
 			<a class="EN hidden" href="javascript:void(0);" onclick="display_switch('footer')">About web-wite</a>
 			<a href="javascript:void(0);" onclick="HideClassType('EN');UnHideClassType('FR')">FR</a>
 			<a href="javascript:void(0);" onclick="HideClassType('FR');UnHideClassType('EN');">EN</a>
-			<a href="javascript:void(0);" class="icon" onclick="SwitchClassbyId('responsive','navbar')">+</a>
+			<a href="javascript:void(0);" class="icon" onclick="SwitchClassbyId('responsive','navbar')"><b>+</b></a>
 		</nav>
 		<article id="welcome">
 			<p class="FR">
@@ -85,12 +83,12 @@
 				<select class="full" name="practice" id="form">
 					<option value="0">EdR</option>
 					<option value="5">Touch</option>
-					<option value="7">7</option>
+					<option value="7">Seven</option>
 					<option value="15" selected>XV</option>
 				</select>
-				<input class="full" type="text" name="team1" value="" placeholder="Team1 name" required />
-				<input class="full" type="text" name="team2" value="" placeholder="Team2 name" required />
-				<input class="full" type="submit" value="GO!" >
+				<input class="full" type="text" name="team1" value="" placeholder="Team1 name" required>
+				<input class="full" type="text" name="team2" value="" placeholder="Team2 name" required>
+				<input class="full" type="submit" value="GO!">
 			</form>
 		</article>
 
